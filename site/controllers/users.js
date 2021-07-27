@@ -1,7 +1,11 @@
 const User = require("../models/user");
 
 exports.getUsers = (req, res, next) => {
-  res.render("index.ejs");
+  User.fetchUsers((users) => {
+    res.render("index.ejs", {
+      users: users,
+    });
+  });
 };
 exports.getAddUser = (req, res, next) => {
   res.render("add-user.ejs");

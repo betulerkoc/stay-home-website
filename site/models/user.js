@@ -30,4 +30,7 @@ module.exports = class User {
       fs.writeFile(filePath, JSON.stringify(users), (err) => console.log(err));
     });
   }
+  static fetchUsers(callBack) {
+    getUsersFromFiles(callBack);
+  }
 };

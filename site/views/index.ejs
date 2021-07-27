@@ -16,6 +16,11 @@
             </ul>
         </nav>
     </header>
-    <h1>No users added</h1>
+    <% if(users.length > 0){ %>
+        <% for(let user of users){ %>
+           <h3>Name: <%= user.fullName %> Email: <%= user.email %> </h3>
+            <% }} else {%>
+        <h1>No users added</h1>
+        <% } %>
 </body>
 </html>
