@@ -18,10 +18,12 @@ const getUsersFromFiles = (callBack) => {
 };
 
 module.exports = class User {
-  constructor(id, fullName, email) {
+  constructor(id, firstName, lastName, email, password) {
     this.id = id;
-    this.fullName = fullName;
+    this.firstName = firstName;
+    this.lastName = lastName;
     this.email = email;
+    this.password = password;
   }
   save() {
     getUsersFromFiles((users) => {
