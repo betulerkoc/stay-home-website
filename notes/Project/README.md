@@ -2,6 +2,13 @@
 
 Now that we have finished implementing the initial code base, you'll work on it to apply your own ideas
 
+## Requirement
+
+- The backend should be connected to frontend through REST API
+- The project should have at least one POST, one GET and one DELETE requests, PATCH is optional
+- Uses sequelize to connect to the database
+- Uses passport.js for authentication
+
 ## Process
 
 We will be following a standard open-source development process:
