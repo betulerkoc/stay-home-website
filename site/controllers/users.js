@@ -32,3 +32,16 @@ exports.postSignUp = (req, res, next) => {
     user,
   });
 };
+
+exports.postSignIn = (req, res, next) => {
+  console.log(req.body);
+  const email = req.body.email;
+  const password = req.body.password;
+  User.singIn(email, password, (user) => {
+    console.log(user);
+    res.status(201).json({
+      message: "the user is signed in",
+      user,
+    });
+  });
+};

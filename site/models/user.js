@@ -35,4 +35,13 @@ module.exports = class User {
   static fetchUsers(callBack) {
     getUsersFromFiles(callBack);
   }
+
+  static singIn(email, password, callBack) {
+    getUsersFromFiles((users) => {
+      const user = users.find(
+        (user) => user.email === email && user.password === password
+      );
+      callBack(user);
+    });
+  }
 };
