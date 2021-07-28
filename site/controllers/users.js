@@ -1,7 +1,7 @@
 const User = require("../models/user");
 
 exports.getUsers = (req, res, next) => {
-  User.fetchUsers((users) => {
+  User.fetchUsers().then((users) => {
     res.status(200).json(users);
   });
 };
@@ -25,12 +25,15 @@ exports.postSignUp = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   const user = new User(null, firstName, lastName, email, password);
-  user.save();
-  console.log(user);
-  res.status(201).json({
-    message: "the user is created",
-    user,
-  });
+  user
+    .save()
+    .then(() => {
+      res.status(201).json({
+        message: "the user is created",
+        user,
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.postSignIn = (req, res, next) => {

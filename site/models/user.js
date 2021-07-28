@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const db = require("../util/database");
 
 const filePath = path.join(
   path.dirname(process.mainModule.filename),
@@ -26,14 +27,13 @@ module.exports = class User {
     this.password = password;
   }
   save() {
-    getUsersFromFiles((users) => {
-      this.id = Math.random().toString();
-      users.push(this);
-      fs.writeFile(filePath, JSON.stringify(users), (err) => console.log(err));
-    });
+    return db.execute(
+      "INSERT INTO users (firstName, lastName, email, password) VALUES (?, ?, ?, ?)",
+      [this.firstName, this.lastName, this.email, this.password]
+    );
   }
-  static fetchUsers(callBack) {
-    getUsersFromFiles(callBack);
+  static fetchUsers() {
+    return db.execute("SELECT * FROM USERS");
   }
 
   static singIn(email, password, callBack) {
