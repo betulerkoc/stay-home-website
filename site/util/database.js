@@ -12,7 +12,7 @@
 
 const { Sequelize } = require('sequelize');
 
-module.exports = new Sequelize('yd-backend-workshop', 'halit', '24118572', {
+module.exports = new Sequelize('databaseName', 'username', 'password', {
   host: 'localhost',
   dialect: 'mysql'
 });
