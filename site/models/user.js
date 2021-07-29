@@ -49,6 +49,7 @@
 
 const { Sequelize, DataTypes } = require('sequelize');
 const db = require("../util/database");
+const bcrypt = require("bcrypt")
 
 
 const User = db.define('User', {
@@ -76,5 +77,13 @@ const User = db.define('User', {
 }, {
     freezeTableName:true
 });
+
+User.beforeCreate((user) => {
+return bcrypt.hash(user.password,10).then(hash => {
+  user.password = hash
+}).catch(err => {
+  throw new Error()
+})
+})
 
 module.exports = User
