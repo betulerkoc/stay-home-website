@@ -7,6 +7,9 @@ const bodyParser = require("body-parser");
 
 const userRouter = require("./routes/users");
 
+// Database
+const db = require("./util/database");
+
 app.set("view engine", "ejs");
 app.set("views", "./views");
 
@@ -14,9 +17,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// app.get("/", (req, res, next) => {
-//   res.render("index.ejs");
-// });
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -30,6 +30,9 @@ app.use((req, res, next) => {
 
 app.use(userRouter);
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+db.sync().then(() => {
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+  });
+}).catch(err => console.log(err))
+
