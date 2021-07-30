@@ -9,8 +9,13 @@ router.get("/", usersControllers.getUsers);
 
 router.post("/sign-up", usersControllers.postSignUp);
 
-router.post("/sign-in", passport.authenticate('local',{session:false, failureRedirect:"/sign-up"}),(req,res) => {
-    res.send(req.user)
-});
+router.post(
+  "/sign-in",
+  passport.authenticate("local", {
+    session: false,
+    failureRedirect: "/sign-up",
+  }),
+  usersControllers.postSignIn
+);
 
 module.exports = router;
