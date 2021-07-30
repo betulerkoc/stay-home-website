@@ -8,3 +8,9 @@ exports.postAddHobby = (req, res, next) => {
     .then((results) => res.send("Hobby is created succesfully"))
     .catch((err) => console.log(err));
 };
+exports.getHobby = (req, res, next) => {
+  req.user
+    .getHobbies()
+    .then((result) => res.send(result))
+    .catch((err) => console.log(err));
+};
