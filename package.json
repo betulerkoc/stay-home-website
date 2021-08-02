@@ -1,0 +1,15 @@
+{
+  "name": "stay-home-website",
+  "version": "1.0.0",
+  "description": "Stay Home Website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u001b[2~\u001b[2~\u001b[2~"
+  },
+  "author": "Shihab AL-Mekhlafi",
+  "license": "ISC"
+}
