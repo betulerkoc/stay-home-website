@@ -14,16 +14,13 @@ function App() {
       <Router>
         <Route path="/" component={Nav} />
         <Route exact path="/">
-          {" "}
-          <Home {...userData} />{" "}
+          <Home {...userData} />
         </Route>
         <Route path="/sign-in">
-          {" "}
-          <SignIn handleFetch={setUserData} />{" "}
+          <SignIn handleFetch={setUserData} />
         </Route>
         <Route path="/sign-up">
-          {" "}
-          <SignUp handleFetch={setUserData} />{" "}
+          <SignUp handleFetch={setUserData} />
         </Route>
       </Router>
     </div>

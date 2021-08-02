@@ -17,7 +17,7 @@ We will be following a standard open-source development process:
 - Invite your teammates.
 - Invite us (either by username on github or by sending me an invite link via Slack).
 - Decide how to separate the work during sprint planning.
-- Each person should create a self-contained pull request (remember that commits to your repository should not leave it in a broken state).
+  -` Each person should create a self-contained pull request (remember that commits to your repository should not leave it in a broken state).
 - Have your teammates review your pull request.
 - Once you are ready, send me your PR and I will give you a code review.
 
@@ -40,7 +40,7 @@ For each page:
 **Example:**
 
 ```
-The Landing Page
+The Landing Page`
 
 The landing page welcomes the user to the website and allows them to sign in or sign up.
 
