@@ -1,0 +1,27 @@
+.applicationContainer {
+  width: 50em;
+  height: 59.1em;
+  margin-top: 5em;
+}
+
+.applyButton {
+  border-radius: 0.3em;
+  margin-top: 2em;
+  width: 17em;
+}
+  
+.inputSize {
+  width: 30em;
+}
+  
+.neumorphism {
+  border-radius: 1em;
+  background: #ffffff;
+  box-shadow: 0.25em 0.25em 1em #808080, -0.25em -0.25em 2em #064420;
+  border: none;
+}
+
+
+
+  
+  

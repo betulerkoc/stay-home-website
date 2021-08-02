@@ -1,0 +1,19 @@
+.signUpContainer {
+  width: 50em;
+  height: 59.1em;
+}
+.signUpButton {
+  border-radius: 0.3em;
+  margin-top: 2em;
+  width: 17em;
+}
+.neumorphism {
+  border-radius: 1em;
+  background: #ffffff;
+  box-shadow: 0.25em 0.25em 1em #808080, -0.25em -0.25em 2em #064420;
+  border: none;
+}
+.otherLink {
+  margin-left: 0.5em;
+  color: #064420;
+}
