@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const db = require("../util/database");
 const bcrypt = require("bcrypt");
-
+//Table for sign Up
 const User = db.define(
   "User",
   {
@@ -11,10 +11,7 @@ const User = db.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    
     password: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -23,13 +20,20 @@ const User = db.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    location: {
+
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+
     //false = volunteer , True = patient
-    volunteerORpatient: {
+    isPatient: {
       type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    
+    phoneNumber: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
@@ -37,6 +41,7 @@ const User = db.define(
     freezeTableName: true,
   }
 );
+
 
 User.beforeCreate((user) => {
   return bcrypt
@@ -48,5 +53,9 @@ User.beforeCreate((user) => {
       throw new Error();
     });
 });
+
+
+
+
 
 module.exports = User;

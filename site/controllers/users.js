@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const User = require("../models/userDB");
 const jwt = require("jsonwebtoken");
 
 exports.getUsers = async (req, res, next) => {
@@ -13,11 +13,11 @@ exports.getAddUser = (req, res, next) => {
 exports.postSignUp = async (req, res, next) => {
   console.log(req.body);
   const fullName = req.body.fullName;
-  const location = req.body.location;
+  const phoneNumber = req.body.phoneNumber;
   const email = req.body.email;
   const password = req.body.password;
-  const volunteerORpatient = req.body.volunteerORpatient;
-  const user = User.build({ email, password, fullName, location, volunteerORpatient });
+  const isPatient = req.body.isPatient;
+  const user = User.build({ email, password, fullName, phoneNumber, isPatient });
   try {
     await user.save();
     res.send(user);
@@ -39,8 +39,9 @@ exports.postSignIn = async (req, res, next) => {
   res.status(200).json({
     token: token,
     userId: req.user.id,
-    firstName: req.user.firstName,
-    lastName: req.user.lastName,
+    fullName: req.user.fullName,
+    phoneNumber: req.user.phoneNumber,
     email: req.user.email,
+    password:req.user.password
   });
 };
