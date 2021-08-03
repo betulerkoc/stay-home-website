@@ -16,7 +16,6 @@ export default function Post({ postDetail }) {
     <div>
       <Card border="secondary" className="postCard">
         <Card.Body>
-          <Card.Title>Secondary Card Title</Card.Title>
           <Card.Text>Number of Family: {postDetail.numberOfFamily}</Card.Text>
           <Card.Text>
             Number of Days Staying Home: {postDetail.numberOfDays}

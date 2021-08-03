@@ -35,10 +35,30 @@ export default function Signup() {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" required />
             </Form.Group>
-            <Form.Group id="password-confirm">
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control type="password" required />
+            <Form.Group id="userType">
+              <Form.Label>User Type</Form.Label>
+              <Form>
+                {["radio"].map((type) => (
+                  <div key={`inline-${type}`} className="mb-3">
+                    <Form.Check
+                      inline
+                      label="Patient"
+                      name="group1"
+                      type={type}
+                      id={`inline-${type}-1`}
+                    />
+                    <Form.Check
+                      inline
+                      label="Volunteer"
+                      name="group1"
+                      type={type}
+                      id={`inline-${type}-2`}
+                    />
+                  </div>
+                ))}
+              </Form>
             </Form.Group>
+
             <Button
               className="w-100 signUpButton"
               variant="success"
