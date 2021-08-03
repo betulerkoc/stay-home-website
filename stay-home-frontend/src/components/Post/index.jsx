@@ -33,7 +33,8 @@ export default function Post({ postDetail }) {
         <Modal.Header>
           <Modal.Title>Contact Info</Modal.Title>
         </Modal.Header>
-        <Modal.Body>E-mail: Phone:</Modal.Body>
+        <Modal.Body>E-mail:  </Modal.Body>
+        <Modal.Body>Phone:  </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close

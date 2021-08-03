@@ -2,13 +2,16 @@
   font-family: system-ui;
   background-color: #E4EFE7;
 }
+.navItem {
+  padding-left: 1em;
+  padding-bottom: 1em;
+  margin-right: 5em;
+  margin-top: -1em;
+}
 .navLink{
   color: #064420 !important;
   font-size: 1.2em !important;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-bottom: 1em;
-  margin-right: 5em;
+  text-decoration: none;
 }
 .logoImg {
   margin-left: -110em;

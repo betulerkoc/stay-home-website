@@ -2,6 +2,7 @@ import React from "react";
 import "./index.css";
 import logo from "../../../public/logo.png";
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export default function SiteNavbar() {
   return (
@@ -11,20 +12,14 @@ export default function SiteNavbar() {
       </Navbar.Brand>
 
       <Nav className="justify-content-end" activeKey="/">
-        <Nav.Item>
-          <Nav.Link href="/volunteer" className="navLink">
-            Volunteer
-          </Nav.Link>
+        <Nav.Item className="navItem">
+          <Link to="/volunteer" className="navLink">Volunteer</Link>
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="/patient" className="navLink">
-            Patient
-          </Nav.Link>
+        <Nav.Item className="navItem">
+          <Link to="/patient" className="navLink">Patient</Link>
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link href="/signup" className="navLink justify-content-end">
-            Sign Up
-          </Nav.Link>
+        <Nav.Item className="navItem">
+          <Link to="/signup" className="navLink">Sign Up</Link>
         </Nav.Item>
       </Nav>
     </Container>
