@@ -7,6 +7,7 @@ import Login from ".//pages/Login";
 import Patient from "./pages/Patient";
 import Volunteer from "./pages/Volunteer";
 import Home from "./pages/Home";
+import PrivateRoute from "./PrivateRoute"
 
 class App extends Component {
   render() {
@@ -18,8 +19,8 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
-            <Route path="/patient" component={Patient} />
-            <Route path="/volunteer" component={Volunteer} />
+            <PrivateRoute path="/patient" component={Patient} />
+            <PrivateRoute path="/volunteer" component={Volunteer} />
           </div>
         </Router>
       </div>
