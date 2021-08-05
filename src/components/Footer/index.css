@@ -1,0 +1,17 @@
+.footer-container{
+    background-color: #2196F3;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    bottom: 0;
+    
+    left: 0;
+    width: 100%;
+    color: #fff;
+
+    clear: both;
+    position: relative;
+    
+    margin-top: 0px;
+}
+
