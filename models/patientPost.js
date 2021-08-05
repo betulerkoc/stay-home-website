@@ -8,7 +8,7 @@ const PatientPost = db.define('PatientPost', {
     autoIncrement: true,
     primaryKey: true
   },
-  patient_id: {
+  id: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
@@ -23,15 +23,18 @@ const PatientPost = db.define('PatientPost', {
     type_of_need: {
     type: DataTypes.STRING,
     allowNull: false
-
   },
    location: {
     type: DataTypes.STRING,
     allowNull: false
   },
-  volunteer_id: {
+  isApplied: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+  },
+  patientId: {
     type: DataTypes.INTEGER,
-    allowNull: true
+    allowNull: false,
   },
 }, {
     freezeTableName:true

@@ -2,18 +2,35 @@ const express = require("express");
 const app = express();
 const port = 3001;
 
-const path = require("path");
+const session = require("express-session");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
+
 const bodyParser = require("body-parser");
 
-const Router = require("./routes/router");
-const { route } = require("./routes/router");
+const userRouter = require("./routes/router");
 
 // Database
 const db = require("./util/database");
+const passport = require("passport");
 
-app.use(express.static(path.join(__dirname, "public")));
+
+const initPassport = require("./util/passport-config");
+initPassport(passport);
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(passport.initialize());
+
+app.use(
+  session({
+    secret: "MySecret",
+    store: new SequelizeStore({
+      db: db,
+    }),
+    resave: false, // we support the touch method so per the express-session docs this should be set to false
+    proxy: true, // if you do SSL outside of node.
+  })
+);
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -25,11 +42,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(Router);
+app.use(userRouter);
 
-db.sync().then(() => {
-  app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-  });
-}).catch(err => console.log(err))
-
+db.sync()
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Hey U did it ! remember Code Once Think Twice http://localhost:${port}`);
+    });
+  })
+  .catch((err) => console.log(err));
