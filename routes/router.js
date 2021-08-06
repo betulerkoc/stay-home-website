@@ -18,11 +18,17 @@ router.post(
   usersControllers.postSignIn
 );
 
+//create new post
 router.post("/patient-post", controllerPost.addPost);
 
+//get all posts where isApplied = false
 router.get("/patient-post", controllerPost.getPosts);
 
-//getPosts
+//get only posts of the patient signen in
+router.get("/getMyPosts", controllerPost.getMyPosts);
+
+router.post("/volunteer-applied", controllerPost.postVolunteerApplied);
+
 
 //exports
 module.exports = router;

@@ -1,4 +1,5 @@
 const PostDB = require("../models/PostDB");
+const { post } = require("../routes/router");
 
 exports.addPost = async (req, res, next) => {
   console.log(req.body);
@@ -33,3 +34,40 @@ exports.getPosts = async (req, res, next) => {
   console.log(req.post);
   res.send(posts);
 };
+
+
+
+exports.getMyPosts = async (req, res, next) => {
+  const patientID = req.body.patientID
+  const myPosts = await PostDB.findAll({where: {
+    patient_id : patientID
+  }})
+  
+  res.send(myPosts)
+
+}
+
+
+exports.postVolunteerApplied = async (req, res, next) => {
+
+  const postID = req.body.postID
+
+  const post = await PostDB.findOne({where:{
+    annotation_id : postID
+  }})
+
+  //update the post row that is applied to true
+  await PostDB.update({isApplied: true}, {
+    where: {
+      annotation_id : postID
+    }
+  })
+
+  const postOwnerID = post.patient_id
+
+  res.send({
+    "postOwnerID": postOwnerID
+  })
+
+}
+
