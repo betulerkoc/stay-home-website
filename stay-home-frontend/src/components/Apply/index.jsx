@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import { Form, Button, Card } from "react-bootstrap";
 import "./index.css";
 import { Container } from "react-bootstrap";
+import swal from "sweetalert";
 
 export default function Apply() {
 
@@ -12,6 +13,13 @@ export default function Apply() {
     TypeOfNeed: "",
     Location: "",
   });
+
+  const [statusCode, setStatusCode] = useState(null);
+
+  useEffect(() => {
+    statusCode === 200 && swal("", "Post is successfully added", "success");
+    console.log(typeof statusCode)
+  }, [statusCode])
 
   const handleFieldChange = (e) => {
     const inputName = e.target.name;
@@ -44,6 +52,8 @@ export default function Apply() {
         "Accept": "application/json"
       }
     })
+    console.log(result.status)
+    await setStatusCode(result.status)
     result = await result.json()
     console.log(result)
     
