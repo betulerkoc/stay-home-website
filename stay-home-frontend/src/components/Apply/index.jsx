@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Button, Card } from "react-bootstrap";
 import "./index.css";
 import { Container } from "react-bootstrap";
 import swal from "sweetalert";
 
 export default function Apply() {
-
   const [post, setNewPost] = useState({
     patient_id: 8, //Adeeb will change it
     number_of_family: "",
@@ -16,32 +15,33 @@ export default function Apply() {
 
   const handleChange = (e) => {
     setNewPost({ ...post, [e.target.name]: e.target.value });
-    console.log(post)
+    console.log(post);
   };
 
   const handlAddPost = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const settings = {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-        }, 
-        body: JSON.stringify(post)
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(post),
     };
+
     try {
-        await fetch(`http://localhost:3001/patient-post`, settings);
+      const fetchResponse = await fetch(`http://localhost:3001/patient-post`, settings);
+      fetchResponse.status === 200 ? swal("", "Post is successfully added", "success") : swal("", "Error", "error");
     } catch (e) {
-        return e;
+      return e;
     }
     setNewPost({
       number_of_family: "",
       number_of_days: "",
       type_of_need: "",
       location: "",
-    })
-    swal("", "Post is successfully added", "success");
-}
+    });
+  };
 
   return (
     <Container className="applicationContainer">

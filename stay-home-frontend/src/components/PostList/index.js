@@ -4,41 +4,15 @@ import Post from "../Post";
 import "./index.css";
 
 export default function PostList() {
-  const mockPostList = [
-    {
-      volunterId: 1,
-      numberOfFamily: 4,
-      numberOfDays: 7,
-      typeOfNeed: "food",
-      location: "istanbul",
-    },
-    {
-      volunterId: 2,
-      numberOfFamily: 4,
-      numberOfDays: 7,
-      typeOfNeed: "food",
-      location: "istanbul",
-    },
-    {
-      volunterId: 3,
-      numberOfFamily: 4,
-      numberOfDays: 7,
-      typeOfNeed: "food",
-      location: "istanbul",
-    },
-  ];
-
-  const [post, setNewPost] = useState([]);
+  const [postData, setPostData] = useState([]);
 
   const getAllPosts = async (e) => {
-    e.preventDefault();
     const settings = {
-      method: "POST",
+      method: "GET",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(post),
     };
     try {
       const fetchResponse = await fetch(
@@ -47,23 +21,22 @@ export default function PostList() {
       );
       const data = await fetchResponse.json();
       console.log(data);
-      setNewPost(data.post);
-      // return data;
+      setPostData(data);
     } catch (e) {
-      return e;
+      console.log(e);
     }
   };
 
   useEffect(() => {
     getAllPosts();
-  }, [post]);
+  }, []);
 
   return (
-    <Container fluid="lg">
+    <Container>
       <Row>
-        {mockPostList.map((item) => {
+        {postData.map((item, index) => {
           return (
-            <Col>
+            <Col key={index}>
               <Post postDetail={item} />
             </Col>
           );
