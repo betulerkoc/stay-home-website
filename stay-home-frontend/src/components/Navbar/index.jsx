@@ -9,8 +9,8 @@ export default function SiteNavbar() {
   // let signedIn = localStorage.getItem("isSignedIn") ? true : false
   // let isPatient = JSON.parse(localStorage.getItem('user-info')).isPatient ? true : false
 
-  const [signedIn,setSignedIn] = useState(localStorage.getItem("isSignedIn") ? true : false)
-  const [isPatient,setIsPatient] = useState(JSON.parse(localStorage.getItem('user-info')).isPatient)
+  const [signedIn,setSignedIn] = useState(false)
+  const [isPatient,setIsPatient] = useState( localStorage.getItem('user-info') ? JSON.parse(localStorage.getItem('user-info')).isPatient  : false)
 
   // setSignedIn(localStorage.getItem("isSignedIn"))
   const history = useHistory()
@@ -18,13 +18,13 @@ export default function SiteNavbar() {
   useEffect(() => {
         setInterval(() => {
           setSignedIn(localStorage.getItem("isSignedIn"))
-          setIsPatient(JSON.parse(localStorage.getItem('user-info')).isPatient)
+          setIsPatient(signedIn ? JSON.parse(localStorage.getItem('user-info')).isPatient : false)
             }, [])
     }, 5000);
 
   async function loggingOut() {
     await localStorage.removeItem("isSignedIn",null)
-    await localStorage.rmoveItem("user-info", null)
+    await localStorage.removeItem("user-info", null)
     setSignedIn(false)
     history.push("/")
 
