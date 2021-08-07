@@ -7,12 +7,13 @@ import Login from ".//pages/Login";
 import Patient from "./pages/Patient";
 import Volunteer from "./pages/Volunteer";
 import Home from "./pages/Home";
-
+import Footer from "./components/Footer"
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Router>
+          
           <Route path="/" component={Navbar} />
           <div className="appContainer">
             <Route exact path="/" component={Home} />
@@ -21,7 +22,9 @@ class App extends Component {
             <Route path="/patient" component={Patient} />
             <Route path="/volunteer" component={Volunteer} />
           </div>
+          
         </Router>
+        <Footer className='footer'/>
       </div>
     );
   }

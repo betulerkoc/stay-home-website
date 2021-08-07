@@ -9,6 +9,14 @@ export default function AppliedPost() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [updatedContent, setUpdatedContent] = useState("");
 
+  const postDetails = {
+    annotation_id: 40,
+    number_of_family: 4,
+    number_of_days: 7,
+    type_of_need: "food",
+    location: "istanbul",
+  };
+
   const showModal = () => {
     setIsOpen(true);
     setUpdatedContent(postDetails);
@@ -16,14 +24,6 @@ export default function AppliedPost() {
 
   const hideModal = () => {
     setIsOpen(false);
-  };
-
-  const postDetails = {
-    annotation_id: 3,
-    number_of_family: 4,
-    number_of_days: 7,
-    type_of_need: "food",
-    location: "istanbul",
   };
 
   const handleChange = (e) => {
