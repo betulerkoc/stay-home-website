@@ -6,10 +6,8 @@ import "./index.css";
 
 export default function Patient() {
   const [userId, setUserID] = useState(
-    JSON.parse(localStorage.getItem("user-info")).userId
+    JSON.parse(localStorage.getItem("user-info")).id
   );
-
-  //ASK local storage
 
   useEffect(() => {
     console.log(userId);
