@@ -4,9 +4,9 @@ import "./index.css";
 import { Container } from "react-bootstrap";
 import swal from "sweetalert";
 
-export default function Apply() {
+export default function Apply({userId}) {
   const [post, setNewPost] = useState({
-    patient_id: 8, //Adeeb will change it
+    patient_id: userId,
     number_of_family: "",
     number_of_days: "",
     type_of_need: "",

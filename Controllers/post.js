@@ -39,14 +39,15 @@ exports.getPosts = async (req, res, next) => {
 
 
 exports.getMyPosts = async (req, res, next) => {
-  const patientID = req.body.patientID
-  const myPosts = await PostDB.findAll({where: {
-    patient_id : patientID
-  }})
-  
-  res.send(myPosts)
+  const patientID = req.body.patient_id;
+  const myPosts = await PostDB.findAll({
+    where: {
+      patient_id: patientID
+    },
+  });
 
-}
+  res.send(myPosts);
+};
 
 
 exports.postVolunteerApplied = async (req, res, next) => {
