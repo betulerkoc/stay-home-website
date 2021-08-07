@@ -4,7 +4,7 @@ import "./index.css";
 
 export default function Volunteer() {
   return (
-    <div>
+    <div className="posts-container">
       <PostList />
     </div>
   );

@@ -35,6 +35,7 @@ export default function Login() {
     console.log(result)
     localStorage.setItem("user-info",JSON.stringify(result))
     localStorage.setItem("isSignedIn",true)
+    console.log(typeof localStorage.setItem("isSignedIn",true) )
     if(JSON.parse(localStorage.getItem("user-info")).isPatient){
         history.push("/patient")
     }

@@ -1,4 +1,5 @@
 const PostDB = require("../models/PostDB");
+const User = require("../models/userDB");
 const { post } = require("../routes/router");
 
 exports.addPost = async (req, res, next) => {
@@ -70,6 +71,24 @@ exports.postVolunteerApplied = async (req, res, next) => {
   })
 
 }
+
+// to get contact info after volunteer clicks apply
+exports.getContactInfo = async (req, res , next) => {
+
+  const postOwnerID = req.params.ownerID
+
+  const postOwner = await User.findOne({where: {
+    id : postOwnerID
+  }})
+
+  res.status(200).json({
+    email : postOwner.email,
+    phoneNumber : postOwner.phoneNumber
+
+  }
+  )
+
+} 
 
 exports.updatePost = async (req, res, next) => {
   const patient_id = req.body.patient_id;

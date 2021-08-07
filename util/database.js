@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize');
 
-module.exports = new Sequelize('stayhome', 'betul', '513747399bet', {
+module.exports = new Sequelize('stayhome', 'root', '', {
   host: 'localhost',
   dialect: 'mysql'
 });

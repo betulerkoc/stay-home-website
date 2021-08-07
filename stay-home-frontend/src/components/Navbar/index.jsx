@@ -10,22 +10,28 @@ export default function SiteNavbar() {
   // let isPatient = JSON.parse(localStorage.getItem('user-info')).isPatient ? true : false
 
   const [signedIn,setSignedIn] = useState(false)
-  const [isPatient,setIsPatient] = useState( localStorage.getItem('user-info') ? JSON.parse(localStorage.getItem('user-info')).isPatient  : false)
+  const [isPatient,setIsPatient] = useState( localStorage.getItem('user-info') ? JSON.parse(localStorage.getItem('user-info')).isPatient  : null)
 
   // setSignedIn(localStorage.getItem("isSignedIn"))
   const history = useHistory()
 
-  useEffect(() => {
-        setInterval(() => {
-          setSignedIn(localStorage.getItem("isSignedIn"))
-          setIsPatient(signedIn ? JSON.parse(localStorage.getItem('user-info')).isPatient : false)
+   useEffect(() => {
+        setInterval(async () => {
+          const booleanSignedIn = (localStorage.getItem("isSignedIn") === "true") ? true : false
+          await setSignedIn(booleanSignedIn)
+            
+            await setIsPatient(booleanSignedIn ? JSON.parse(localStorage.getItem('user-info')).isPatient : null)
+            
+         //await setIsPatient(signedIn ? JSON.parse(localStorage.getItem('user-info')).isPatient : null)
+       // await setIsPatient(signedIn ? "yes signed in" : "not signed in")
             }, [])
     }, 5000);
 
   async function loggingOut() {
     await localStorage.removeItem("isSignedIn",null)
     await localStorage.removeItem("user-info", null)
-    setSignedIn(false)
+     setSignedIn(false)
+    
     history.push("/")
 
     

@@ -27,6 +27,9 @@ router.get("/patient-post", controllerPost.getPosts);
 //get only posts of the patient signen in
 router.get("/getMyPosts", controllerPost.getMyPosts);
 
+//get contact info of user who posted this post
+router.get("/contact-info/:ownerID",controllerPost.getContactInfo);
+
 router.post("/volunteer-applied", controllerPost.postVolunteerApplied);
 
 router.put("/patient-post/update", controllerPost.updatePost);
