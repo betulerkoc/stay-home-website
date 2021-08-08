@@ -15,14 +15,6 @@ export default function AppliedPost({ myPosts }) {
 
   }, [myPosts]);
 
-  const postDetails = {
-    annotation_id: 2,
-    number_of_family: 4,
-    number_of_days: 7,
-    type_of_need: "food",
-    location: "istanbul",
-  };
-
   const showModal = (item) => {
     setIsOpen(true);
     setUpdatedContent(item);
@@ -33,7 +25,8 @@ export default function AppliedPost({ myPosts }) {
   };
 
   const handleChange = (e) => {
-    setUpdatedContent({ ...postDetails, [e.target.name]: e.target.value });
+    console.log(e.target.name)
+    setUpdatedContent({ ...updatedContent, [e.target.name]: e.target.value });
   };
 
   const deletePost = async (item) => {
@@ -58,10 +51,8 @@ export default function AppliedPost({ myPosts }) {
     }
   };
 
-  const updatePost = async (item) => {
-    //e.preventDefault();
+  const updatePost = async () => {
     console.log(updatedContent);
-    // console.log("updatedContent")
     const settings = {
       method: "PUT",
       headers: {
@@ -91,7 +82,7 @@ export default function AppliedPost({ myPosts }) {
             return (
               <Card key={index} className="postCard">
                 <FaRegEdit onClick={() => showModal(item)} />
-                <FaTimes onClick={() => deletePost(item)} />
+                <FaTimes className="deleteButton" onClick={() => deletePost(item)} />
                 <Card.Body>
                   <Card.Text>
                     Number of Family: {item.number_of_family}
@@ -110,7 +101,7 @@ export default function AppliedPost({ myPosts }) {
                         name="number_of_family"
                         type="text"
                         value={updatedContent.number_of_family}
-                        onChange={() => handleChange(item)}
+                        onChange={handleChange}
                         required
                       />
                     </Form.Group>
@@ -120,7 +111,7 @@ export default function AppliedPost({ myPosts }) {
                         name="number_of_days"
                         type="text"
                         value={updatedContent.number_of_days}
-                        onChange={() => handleChange(item)}
+                        onChange={handleChange}
                         required
                       />
                     </Form.Group>
@@ -130,7 +121,7 @@ export default function AppliedPost({ myPosts }) {
                         name="type_of_need"
                         type="text"
                         value={updatedContent.type_of_need}
-                        onChange={() => handleChange(item)}
+                        onChange={handleChange}
                         required
                       />
                     </Form.Group>
@@ -140,7 +131,7 @@ export default function AppliedPost({ myPosts }) {
                         name="location"
                         type="text"
                         value={updatedContent.location}
-                        onChange={() => handleChange(item)}
+                        onChange={handleChange}
                         required
                       />
                     </Form.Group>

@@ -5,51 +5,49 @@ import { Container, Row, Col } from "react-bootstrap";
 import "./index.css";
 
 export default function Patient() {
-  const [userId, setUserID] = useState(
-    JSON.parse(localStorage.getItem("user-info")).id
-  );
+  const [userId] = useState(JSON.parse(localStorage.getItem("user-info")).id);
 
   useEffect(() => {
     console.log(userId);
-    getMyPosts()
+    getMyPosts();
   }, []);
 
   const [myPosts, setMyPosts] = useState(null);
 
   async function getMyPosts() {
     const reqBody = {
-        patient_id: userId,
-      };
-      const settings = {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(reqBody),
-      };
-      try {
-        const fetchResponse = await fetch(
-          `http://localhost:3001/getMyPosts`,
-          settings
-        );
-        console.log(fetchResponse);
-        const data = await fetchResponse.json();
-        console.log(data);
-        setMyPosts(data)
-      } catch (e) {
-        console.log(e);
-      }
+      patient_id: userId,
+    };
+    const settings = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reqBody),
+    };
+    try {
+      const fetchResponse = await fetch(
+        `http://localhost:3001/getMyPosts`,
+        settings
+      );
+      console.log(fetchResponse);
+      const data = await fetchResponse.json();
+      console.log(data);
+      setMyPosts(data);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (
     <Container>
       <Row>
-        <Col>
-          <Apply userId={userId}/>
+        <Col s={12} lg={8}>
+          <Apply userId={userId} />
         </Col>
-        <Col>
-          <AppliedPost myPosts={myPosts}/>
+        <Col s={6} lg={4}>
+          <AppliedPost myPosts={myPosts} />
         </Col>
       </Row>
     </Container>
