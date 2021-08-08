@@ -69,6 +69,7 @@ export default function AppliedPost({ myPosts, getMyPosts }) {
         ? swal("", "Post is successfully updated", "success")
         : swal("", "Error", "error");
       getMyPosts();
+      setIsOpen(false)
     } catch (e) {
       console.log(e);
     }
