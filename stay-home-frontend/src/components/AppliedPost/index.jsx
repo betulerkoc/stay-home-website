@@ -5,15 +5,13 @@ import "./index.css";
 import { FaRegEdit, FaTimes } from "react-icons/fa";
 import swal from "sweetalert";
 
-export default function AppliedPost({ myPosts }) {
+export default function AppliedPost({ myPosts, getMyPosts }) {
   console.log(myPosts);
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [updatedContent, setUpdatedContent] = useState("");
 
-  useEffect(() => {
-
-  }, [myPosts]);
+  useEffect(() => {}, [myPosts]);
 
   const showModal = (item) => {
     setIsOpen(true);
@@ -25,7 +23,6 @@ export default function AppliedPost({ myPosts }) {
   };
 
   const handleChange = (e) => {
-    console.log(e.target.name)
     setUpdatedContent({ ...updatedContent, [e.target.name]: e.target.value });
   };
 
@@ -46,6 +43,7 @@ export default function AppliedPost({ myPosts }) {
       fetchResponse.status === 200
         ? swal("", "Post is successfully deleted", "success")
         : swal("", "Error", "error");
+      getMyPosts();
     } catch (e) {
       console.log(e);
     }
@@ -70,6 +68,7 @@ export default function AppliedPost({ myPosts }) {
       fetchResponse.status === 200
         ? swal("", "Post is successfully updated", "success")
         : swal("", "Error", "error");
+      getMyPosts();
     } catch (e) {
       console.log(e);
     }
@@ -77,78 +76,85 @@ export default function AppliedPost({ myPosts }) {
 
   return (
     <div>
-      {myPosts
-        ? myPosts.map((item, index) => {
-            return (
-              <Card key={index} className="postCard">
-                <FaRegEdit onClick={() => showModal(item)} />
-                <FaTimes className="deleteButton" onClick={() => deletePost(item)} />
-                <Card.Body>
-                  <Card.Text>
-                    Number of Family: {item.number_of_family}
-                  </Card.Text>
-                  <Card.Text>
-                    Number of Days Staying Home: {item.number_of_days}
-                  </Card.Text>
-                  <Card.Text>Type of Need: {item.type_of_need}</Card.Text>
-                  <Card.Text>Location: {item.location}</Card.Text>
-                </Card.Body>
-                <Modal title="Update Content" show={isOpen} onHide={hideModal}>
-                  <Form className="formSize" onSubmit={() => updatePost()}>
-                    <Form.Group id="numberOfFamilyMember">
-                      <Form.Label>Number of Family Members</Form.Label>
-                      <Form.Control
-                        name="number_of_family"
-                        type="text"
-                        value={updatedContent.number_of_family}
-                        onChange={handleChange}
-                        required
-                      />
-                    </Form.Group>
-                    <Form.Group id="numberOfStayingHome">
-                      <Form.Label>Number of Days Staying Home</Form.Label>
-                      <Form.Control
-                        name="number_of_days"
-                        type="text"
-                        value={updatedContent.number_of_days}
-                        onChange={handleChange}
-                        required
-                      />
-                    </Form.Group>
-                    <Form.Group id="typeOfNeed">
-                      <Form.Label>Type of Need</Form.Label>
-                      <Form.Control
-                        name="type_of_need"
-                        type="text"
-                        value={updatedContent.type_of_need}
-                        onChange={handleChange}
-                        required
-                      />
-                    </Form.Group>
-                    <Form.Group id="location">
-                      <Form.Label>Location</Form.Label>
-                      <Form.Control
-                        name="location"
-                        type="text"
-                        value={updatedContent.location}
-                        onChange={handleChange}
-                        required
-                      />
-                    </Form.Group>
-                    <Button
-                      className="w-100 updateButton"
-                      // type="submit"
-                      variant="success"
-                      onClick={() => updatePost()}
-                    >
-                      Update
-                    </Button>
-                  </Form>
-                </Modal>
-              </Card>
-            );
-          })
-        : "NO data"}
+      {myPosts ? (
+        myPosts.map((item, index) => {
+          return (
+            <Card key={index} className="postCard">
+              <FaRegEdit onClick={() => showModal(item)} />
+              <FaTimes
+                className="deleteButton"
+                onClick={() => deletePost(item)}
+              />
+              <Card.Body>
+                <Card.Text>Number of Family: {item.number_of_family}</Card.Text>
+                <Card.Text>
+                  Number of Days Staying Home: {item.number_of_days}
+                </Card.Text>
+                <Card.Text>Type of Need: {item.type_of_need}</Card.Text>
+                <Card.Text>Location: {item.location}</Card.Text>
+              </Card.Body>
+              <Modal title="Update Content" show={isOpen} onHide={hideModal}>
+                <Form className="formSize" onSubmit={() => updatePost()}>
+                  <Form.Group id="numberOfFamilyMember">
+                    <Form.Label>Number of Family Members</Form.Label>
+                    <Form.Control
+                      name="number_of_family"
+                      type="text"
+                      value={updatedContent.number_of_family}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                  <Form.Group id="numberOfStayingHome">
+                    <Form.Label>Number of Days Staying Home</Form.Label>
+                    <Form.Control
+                      name="number_of_days"
+                      type="text"
+                      value={updatedContent.number_of_days}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                  <Form.Group id="typeOfNeed">
+                    <Form.Label>Type of Need</Form.Label>
+                    <Form.Control
+                      name="type_of_need"
+                      type="text"
+                      value={updatedContent.type_of_need}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                  <Form.Group id="location">
+                    <Form.Label>Location</Form.Label>
+                    <Form.Control
+                      name="location"
+                      type="text"
+                      value={updatedContent.location}
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                  <Button
+                    className="w-100 updateButton"
+                    // type="submit"
+                    variant="success"
+                    onClick={() => updatePost()}
+                  >
+                    Update
+                  </Button>
+                </Form>
+              </Modal>
+            </Card>
+          );
+        })
+      ) : (
+        <Card className="warningCard">
+          <Card.Body>
+            <Card.Text>NO DATA</Card.Text>
+          </Card.Body>
+        </Card>
+      )}
     </div>
   );
 }

@@ -2,6 +2,12 @@
   width: 25rem;
   margin: 55em;
 }
+
+.warningCard{
+  margin-top: 4em;
+  margin-left: 3em;
+}
+
 .formSize{
   padding: 5em;
 }

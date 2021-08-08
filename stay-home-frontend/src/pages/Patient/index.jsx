@@ -6,13 +6,12 @@ import "./index.css";
 
 export default function Patient() {
   const [userId] = useState(JSON.parse(localStorage.getItem("user-info")).id);
+  const [myPosts, setMyPosts] = useState(null);
 
   useEffect(() => {
     console.log(userId);
     getMyPosts();
   }, []);
-
-  const [myPosts, setMyPosts] = useState(null);
 
   async function getMyPosts() {
     const reqBody = {
@@ -44,10 +43,10 @@ export default function Patient() {
     <Container>
       <Row>
         <Col s={12} lg={8}>
-          <Apply userId={userId} />
+          <Apply userId={userId} getMyPosts={getMyPosts} />
         </Col>
         <Col s={6} lg={4}>
-          <AppliedPost myPosts={myPosts} />
+          <AppliedPost myPosts={myPosts} getMyPosts={getMyPosts} />
         </Col>
       </Row>
     </Container>
