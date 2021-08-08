@@ -76,6 +76,8 @@ exports.postVolunteerApplied = async (req, res, next) => {
 // to get contact info after volunteer clicks apply
 exports.getContactInfo = async (req, res , next) => {
 
+
+  try{
   const postOwnerID = req.params.ownerID
 
   const postOwner = await User.findOne({where: {
@@ -88,6 +90,7 @@ exports.getContactInfo = async (req, res , next) => {
 
   }
   )
+    } catch(e){res.status(400).send(e)}
 
 } 
 
