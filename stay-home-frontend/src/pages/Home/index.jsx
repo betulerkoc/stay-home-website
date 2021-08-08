@@ -78,14 +78,14 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="row g-0">
-                    <div className="col-lg-6 text-white showcase-img" style={{backgroundImage: "url('./assets/img/bg-showcase-2.jpg')"}}></div>
+                    <div className="col-lg-6 text-white showcase-img" style={{backgroundImage: "url('./assets/img/second.png')"}}></div>
                     <div className="col-lg-6 my-auto showcase-text">
                         <h2>What's Next!!</h2>
                         <p className="lead mb-0">As a patient you can fill up a form with your family details and location, then you can check your posts to edit or delete them whenever you want!</p>
                     </div>
                 </div>
                 <div className="row g-0">
-                    <div className="col-lg-6 order-lg-2 text-white showcase-img" style={{backgroundImage: "url('./assets/img/bg-showcase-3.jpg')"}}></div>
+                    <div className="col-lg-6 order-lg-2 text-white showcase-img" style={{backgroundImage: "url('./assets/img/volunteering.png')"}}></div>
                     <div className="col-lg-6 order-lg-1 my-auto showcase-text">
                         <h2>If You Love Volunteering</h2>
                         <p className="lead mb-0">You can search the for a family that needs help according to your location, then you can apply to assist the family and get their contact info!</p>
@@ -100,7 +100,7 @@ export default function Home() {
                 <div className="row">
                     <div className="col-lg-4">
                         <div className="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img className="img-fluid rounded-circle mb-3" src="assets/img/testimonials-1.jpg" alt="..." />
+                            <img className="img-fluid rounded-circle mb-3" src="assets/img/Lara.jpg" alt="..." />
                             <h5>Lara Rawf</h5>
                             <p className="font-weight-light mb-0">A passionate Full-Stack Developer!</p>
                         </div>
@@ -113,14 +113,14 @@ export default function Home() {
                     </div>
                     <div className="col-lg-4">
                         <div className="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img className="img-fluid rounded-circle mb-3" src="assets/img/testimonials-1.jpg" alt="..." />
+                            <img className="img-fluid rounded-circle mb-3" src="assets/img/betul.png" alt="..." />
                             <h5>Betul Erkoc</h5>
                             <p className="font-weight-light mb-0">A passionate Full-Stack Developer!</p>
                         </div>
                     </div>
                     <div className="col-lg-4">
                         <div className="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img className="img-fluid rounded-circle mb-3" src="assets/img/testimonials-3.jpg" alt="..." />
+                            <img className="img-fluid rounded-circle mb-3" src="assets/img/Shihab.png" alt="..." />
                             <h5>Shihab Mekhlafi</h5>
                             <p className="font-weight-light mb-0">A passionate Full-Stack Developer!</p>
                         </div>

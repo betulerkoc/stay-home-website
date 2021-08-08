@@ -5,7 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import "./index.css";
 
 export default function Patient() {
-  const [userId] = useState(JSON.parse(localStorage.getItem("user-info")).id);
+  const [userId] = useState(JSON.parse(localStorage.getItem("user-info")).userId);
   const [myPosts, setMyPosts] = useState(null);
 
   useEffect(() => {
