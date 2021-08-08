@@ -4,7 +4,7 @@ import "./index.css";
 import { Container } from "react-bootstrap";
 import swal from "sweetalert";
 
-export default function Apply({userId}) {
+export default function Apply({ userId, getMyPosts }) {
   const [post, setNewPost] = useState({
     patient_id: userId,
     number_of_family: "",
@@ -30,8 +30,14 @@ export default function Apply({userId}) {
     };
 
     try {
-      const fetchResponse = await fetch(`http://localhost:3001/patient-post`, settings);
-      fetchResponse.status === 200 ? swal("", "Post is successfully added", "success") : swal("", "Error", "error");
+      const fetchResponse = await fetch(
+        `http://localhost:3001/patient-post`,
+        settings
+      );
+      fetchResponse.status === 200
+        ? swal("", "Post is successfully added", "success")
+        : swal("", "Error", "error");
+      getMyPosts();
     } catch (e) {
       return e;
     }
