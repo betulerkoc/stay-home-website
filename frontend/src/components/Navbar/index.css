@@ -1,0 +1,21 @@
+.navMainClass {
+  font-family: system-ui;
+  background-color: #009688;
+}
+.navItem {
+  padding-left: 1em;
+  padding-bottom: 2em;
+  margin-right: 5em;
+  margin-top: -1em;
+  
+}
+.navLink{
+  color: #fff !important;
+  font-size: 1.2em !important;
+  text-decoration: none;
+}
+.logoImg {
+  width: 7%;
+  margin-bottom: -3em;
+  margin-left: -45em
+}
