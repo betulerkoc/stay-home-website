@@ -38,7 +38,7 @@ exports.postSignIn = async (req, res, next) => {
   );
   res.status(200).json({
     token: token,
-    userId: req.user.id,
+    id: req.user.id,
     fullName: req.user.fullName,
     phoneNumber: req.user.phoneNumber,
     email: req.user.email,

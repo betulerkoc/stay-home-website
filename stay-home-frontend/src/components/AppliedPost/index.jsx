@@ -152,7 +152,7 @@ export default function AppliedPost({ myPosts, getMyPosts }) {
       ) : (
         <Card className="warningCard">
           <Card.Body>
-            <Card.Text>NO DATA</Card.Text>
+            <Card.Text>You have no posts at the moment!</Card.Text>
           </Card.Body>
         </Card>
       )}
