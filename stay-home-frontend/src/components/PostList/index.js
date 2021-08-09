@@ -6,18 +6,10 @@ import "./index.css";
 export default function PostList() {
   const [postData, setPostData] = useState([]);
 
-  const getAllPosts = async (e) => {
-    const settings = {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    };
+  const getAllPosts = async () => {
     try {
       const fetchResponse = await fetch(
-        `http://localhost:3001/patient-post`,
-        settings
+        `http://localhost:3001/patient-post`
       );
       const data = await fetchResponse.json();
       setPostData(data);

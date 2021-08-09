@@ -1,100 +1,73 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState } from "react";
-// import { Col } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
 import { Card, Button, Modal } from "react-bootstrap";
 import { FaTimes, FaCheck } from "react-icons/fa";
 import "./index.css";
 
-export default function Post({ postDetail}) {
+export default function Post({ postDetail }) {
   //console.log(postDetail);
   const [show, setShow] = useState(false);
-  const [applicaionStatus, setApplicationStatus] = useState(postDetail.isApplied);
-  //const [postOwnerID, setOwnerID] = useState(null);
-  const [contactInfo, setContactInfo] = useState({email: "", phoneNumber: ""})
-
-  var postOwnerID = null;
-  //var contactInfo = {email: "", phoneNumber: ""}
+  const [status, setStatus] = useState(postDetail.isApplied)
+  const [postOwnerID, setOwnerID] = useState(null);
+  const [contactInfo, setContactInfo] = useState({
+    email: "",
+    phoneNumber: "",
+  });
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
-    console.log("HandleShow is executed")
-     SendApplied(postDetail.annotation_id, 
-      () => {
-        getContactInfo()
-      })
-      .then(
-      setShow(true)
-      )
-      
-      
-     }
+    SendApplied(postDetail.annotation_id);
+    setShow(true);
+  };
 
-     
+  useEffect(() => {
+    getContactInfo();
+  }, [postOwnerID]);
 
-     
-    
-    
-     //we send the post ID to the function in postlist
-    //to make the post applied = true then the function will send back the ownerID
-    //console.log("The owner of this post is:",postOwnerID)
-  
-
-  // we should get postDetail.patientId --- accourding to id response, we can get contact information
-
-
-  async function SendApplied(postID, callback){
-    console.log("Send Applied is executed")
-    const obj = {"postID": postID}
-    let result = await fetch("http://localhost:3001/volunteer-applied",
-    {
+  async function SendApplied(postID) {
+    const obj = { postID: postID };
+    let result = await fetch("http://localhost:3001/volunteer-applied", {
       method: "POST",
       body: JSON.stringify(obj),
-      headers:  {
+      headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json"
-      }
-    })
-    result = await result.json()
-    
-    //await setOwnerID(result.postOwnerID)
-    postOwnerID = result.postOwnerID
-    console.log("OwnerID of this post is", postOwnerID)
-    console.log("Send Applied is done executing")
-    callback()
+        Accept: "application/json",
+      },
+    });
+    result = await result.json();
+    //console.log(result)
+    await setOwnerID(result.postOwnerID);
+    setStatus(true);
+    console.log("OwnerID of this post is", postOwnerID);
+  }
 
+  async function getContactInfo() {
+    console.log("post owner id in api function is :", postOwnerID);
+    try {
+      let result = await fetch(
+        `http://localhost:3001/contact-info/${postOwnerID}`,
+      );
+      result = await result.json();
+      console.log("The contact info after fetching", result);
+      result &&
+        setContactInfo({
+          email: result.email,
+          phoneNumber: result.phoneNumber,
+        });
+    } catch (e) {
+      console.log(e);
     }
-
-    async function getContactInfo(){
-      console.log("Get contact info is now executed")
-      //console.log("post owner id in api function is :",postOwnerID)
-      try{
-        let result = await fetch(`http://localhost:3001/contact-info/${postOwnerID}`,
-      {
-        method: "GET",
-        
-        headers:  {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        }
-      })
-      result = await result.json()
-      //console.log(result)
-      
-      console.log("The contact info after fetching", result)
-      await setContactInfo({email: result.email, phoneNumber: result.phoneNumber})
-      setApplicationStatus(true)
-      //contactInfo.email = result.email
-      //contactInfo.phoneNumber = result.phoneNumber
-
-      }
-      catch(e){ console.log("The error is",e)}
-      console.log("get contact info is done executing")
-      
-
-      }
-
-
-
+    let result = await fetch(
+      `http://localhost:3001/contact-info/${postOwnerID}`,
+    );
+    result = await result.json();
+   
+    console.log("The contact info after fetching", result);
+    await setContactInfo({
+      email: result.email,
+      phoneNumber: result.phoneNumber,
+    });
+  }
   return (
     <div>
       <Card border="secondary" className="postCard">
@@ -107,10 +80,10 @@ export default function Post({ postDetail}) {
           <Card.Text>Location: {postDetail.location}</Card.Text>
           <Card.Text>
             Application Status:{" "}
-            {applicaionStatus ? <FaTimes /> : <FaCheck />}
+            {status ? <FaTimes /> : <FaCheck />}
           </Card.Text>
         </Card.Body>
-        {applicaionStatus ? (
+        {status ? (
           <Button variant="success" onClick={handleShow}>
             See Details
           </Button>
@@ -125,7 +98,7 @@ export default function Post({ postDetail}) {
         <Modal.Header>
           <Modal.Title>Contact Info</Modal.Title>
         </Modal.Header>
-        <Modal.Body>E-mail: {contactInfo.email} {console.log("Mounted Modal")} </Modal.Body>
+        <Modal.Body>E-mail: {contactInfo.email} </Modal.Body>
         <Modal.Body>Phone: {contactInfo.phoneNumber} </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

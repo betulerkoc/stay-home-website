@@ -13,7 +13,6 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          
           <Route path="/" component={Navbar} />
           <div className="appContainer">
             <Route exact path="/" component={Home} />
@@ -22,7 +21,6 @@ class App extends Component {
             <Route path="/patient" component={Patient} />
             <Route path="/volunteer" component={Volunteer} />
           </div>
-          
         </Router>
         <Footer className='footer'/>
       </div>
