@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 // import { Col } from "react-bootstrap";
 import { Card, Button, Modal } from "react-bootstrap";
 import { FaTimes, FaCheck } from "react-icons/fa";
@@ -8,6 +8,7 @@ import "./index.css";
 export default function Post({ postDetail}) {
   //console.log(postDetail);
   const [show, setShow] = useState(false);
+  const [applicaionStatus, setApplicationStatus] = useState(postDetail.isApplied);
   //const [postOwnerID, setOwnerID] = useState(null);
   const [contactInfo, setContactInfo] = useState({email: "", phoneNumber: ""})
 
@@ -81,6 +82,7 @@ export default function Post({ postDetail}) {
       
       console.log("The contact info after fetching", result)
       await setContactInfo({email: result.email, phoneNumber: result.phoneNumber})
+      setApplicationStatus(true)
       //contactInfo.email = result.email
       //contactInfo.phoneNumber = result.phoneNumber
 
@@ -105,12 +107,12 @@ export default function Post({ postDetail}) {
           <Card.Text>Location: {postDetail.location}</Card.Text>
           <Card.Text>
             Application Status:{" "}
-            {postDetail.isApplied ? <FaTimes /> : <FaCheck />}
+            {applicaionStatus ? <FaTimes /> : <FaCheck />}
           </Card.Text>
         </Card.Body>
-        {postDetail.isApplied ? (
-          <Button variant="success" onClick={handleShow} disabled>
-            Apply
+        {applicaionStatus ? (
+          <Button variant="success" onClick={handleShow}>
+            See Details
           </Button>
         ) : (
           <Button variant="success" onClick={handleShow}>

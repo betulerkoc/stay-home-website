@@ -27,11 +27,7 @@ exports.addPost = async (req, res, next) => {
 };
 
 exports.getPosts = async (req, res, next) => {
-  const posts = await PostDB.findAll({
-    where: {
-      isApplied: false
-    }
-  });
+  const posts = await PostDB.findAll();
   console.log(req.post);
   res.send(posts);
 };
